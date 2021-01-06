@@ -151,34 +151,14 @@ class ApiController extends Controller
         return $this->redirect(['index']);
     }
 
-
-    function OpenCon()
-    {
-        $dbhost = "localhost";
-        $dbuser = "ketqualive";
-        $dbpass = "ketqualive1234";
-        $db = "xs";
-        $conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $conn -> error);
-        
-        return $conn;
-    }
-    
-    function CloseCon($conn)
-    {
-        $conn -> close();
-    }
-
     public function actionLoto(){
-        $conn = $this->OpenCon();
-        CloseCon($conn);
+        $abc = $row = Yii::$app->db2->createCommand("SELECT * FROM mv_loto_result WHERE region = 'bac' ORDER BY id desc LIMIT 1")->queryOne();
         return array(
             "error"=> 0,
             "message"=> "",
-            "data"=>Chapter::find(1));
+            "data"=>$abc);
     }
 
-
-    
     /**
      * Finds the Chapter model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
