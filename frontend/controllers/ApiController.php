@@ -156,7 +156,7 @@ class ApiController extends Controller
         return array(
             "error"=> 0,
             "message"=> "",
-            "data"=>$abc);
+            "data"=> array("loto" => $abc));
     }
 
     /**
